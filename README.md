@@ -1,1 +1,2 @@
-# tecky
+Hey there
+## Ai trainer
