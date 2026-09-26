@@ -3,251 +3,337 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>David Akimara — AI Trainer &amp; Video Annotator</title>
+<title>David Akimara — AI Trainer &amp; Data Annotation Specialist</title>
+<!--
+  HOW TO CUSTOMIZE
+  1. Colors/fonts: edit the CSS variables right below (":root").
+  2. Text: search for [[ ]] double-bracket placeholders and replace them with your own words.
+  3. Links: search for href="#" and swap in your real profile links.
+  4. Everything lives in this one file, so it's ready to drop into a GitHub repo as index.html.
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0E0F11;
-    --bg-raised:#16181B;
-    --text:#EDEBE6;
-    --text-dim:#9A9D9F;
-    --accent:#5EEAD4;
-    --accent-dim:#2E5F58;
-    --amber:#E8A33D;
-    --line:#2A2D30;
+    --ink:#eef1f0;
+    --ink-dim:#a9b4b2;
+    --bg:#12181a;
+    --bg-raised:#1a2224;
+    --bg-card:#182022;
+    --line:#2a3436;
+    --mint:#2dd4bf;
+    --mint-dim:#1c8478;
+    --amber:#f5b942;
     --radius:2px;
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
   body{
     background:var(--bg);
-    color:var(--text);
-    font-family:'IBM Plex Sans', system-ui, sans-serif;
-    line-height:1.6;
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3{font-family:'Space Grotesk', system-ui, sans-serif; font-weight:700; letter-spacing:-0.01em;}
-  .mono{font-family:'IBM Plex Mono', monospace;}
-  a{color:var(--accent); text-decoration:none;}
-  a:hover{text-decoration:underline;}
-  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+  h1,h2,h3{font-family:'Archivo',sans-serif;letter-spacing:-0.01em}
+  .mono{font-family:'IBM Plex Mono',monospace}
+  a{color:inherit;text-decoration:none}
+  section{padding:5rem 1.5rem;max-width:980px;margin:0 auto}
+  .section-head{max-width:640px;margin-bottom:2.5rem}
+  .section-head h2{font-size:1.9rem;font-weight:800;color:var(--ink)}
+  .section-head p{color:var(--ink-dim);margin-top:.5rem;font-size:1rem}
 
-  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+  /* corner-bracket annotation device */
+  .tagged{position:relative;padding:1.5rem}
+  .tagged::before,.tagged::after,.tagged .c2::before,.tagged .c2::after{content:'';position:absolute;width:14px;height:14px;border-color:var(--mint)}
+  .tagged::before{top:0;left:0;border-top:2px solid var(--mint);border-left:2px solid var(--mint)}
+  .tagged::after{bottom:0;right:0;border-bottom:2px solid var(--mint);border-right:2px solid var(--mint)}
 
-  /* --- nav --- */
-  nav{
-    position:sticky; top:0; z-index:10;
-    background:rgba(14,15,17,0.9); backdrop-filter:blur(6px);
+  header{
+    position:sticky;top:0;z-index:10;
+    background:rgba(18,24,26,.9);backdrop-filter:blur(6px);
     border-bottom:1px solid var(--line);
   }
-  nav .wrap{display:flex; justify-content:space-between; align-items:center; height:56px;}
-  .brand{font-family:'Space Grotesk'; font-weight:700; font-size:1rem;}
-  .brand .mono{color:var(--accent); font-weight:400;}
-  nav ul{list-style:none; display:flex; gap:28px;}
-  nav a{color:var(--text-dim); font-size:0.9rem;}
-  nav a:hover{color:var(--text); text-decoration:none;}
+  nav{display:flex;justify-content:space-between;align-items:center;max-width:980px;margin:0 auto;padding:1rem 1.5rem}
+  .logo{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.1rem}
+  .logo span{color:var(--mint)}
+  .navlinks{display:flex;gap:1.75rem;font-size:.92rem}
+  .navlinks a:hover{color:var(--mint)}
+  .navbtn{display:none;flex-direction:column;gap:4px;background:none;border:0;cursor:pointer}
+  .navbtn span{width:22px;height:2px;background:var(--ink)}
 
-  /* --- hero --- */
-  .hero{padding:96px 0 80px; position:relative;}
-  .frame-tag{
-    display:inline-flex; align-items:center; gap:8px;
-    font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--text-dim);
-    border:1px solid var(--line); padding:5px 10px; border-radius:var(--radius);
-    margin-bottom:28px;
+  #hero{padding-top:6rem;padding-bottom:4rem;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center}
+  .status-chip{display:inline-flex;align-items:center;gap:.5rem;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--mint);border:1px solid var(--mint-dim);padding:.3rem .7rem;border-radius:var(--radius);margin-bottom:1.3rem}
+  .status-chip i{width:7px;height:7px;background:var(--mint);border-radius:50%}
+  #hero h1{font-size:clamp(2.3rem,5vw,3.4rem);font-weight:800;line-height:1.08}
+  #hero .role{color:var(--mint);font-size:1.15rem;margin-top:.8rem;font-weight:600}
+  #hero p.lead{color:var(--ink-dim);max-width:46ch;margin-top:1.1rem;font-size:1.02rem}
+  .cta-row{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap}
+  .btn{font-family:'IBM Plex Mono',monospace;font-size:.85rem;padding:.75rem 1.3rem;border-radius:var(--radius)}
+  .btn-primary{background:var(--mint);color:#0a1211;font-weight:600}
+  .btn-primary:hover{background:#3fe6d0}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--mint);color:var(--mint)}
+  .avatar{width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-size:2.6rem;font-weight:800;color:#0a1211;background:linear-gradient(135deg,var(--mint),var(--amber));justify-self:end}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:3rem}
+  .stat{background:var(--bg);padding:1.3rem}
+  .stat b{display:block;font-family:'Archivo',sans-serif;font-size:1.5rem;color:var(--mint)}
+  .stat span{color:var(--ink-dim);font-size:.85rem}
+
+  #about{border-top:1px solid var(--line)}
+  #about .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem}
+  #about p{color:var(--ink-dim)}
+
+  .tag-group{display:flex;flex-wrap:wrap;gap:.6rem}
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:.8rem;border:1px solid var(--line);padding:.45rem .8rem;border-radius:var(--radius);display:inline-flex;align-items:center;gap:.5rem}
+  .tag i{width:6px;height:6px;background:var(--amber);display:inline-block}
+  .tag-label{color:var(--ink-dim);font-size:.78rem;font-family:'IBM Plex Mono',monospace;margin-bottom:.7rem;display:block}
+
+  #services{border-top:1px solid var(--line)}
+  .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+  .svc{background:var(--bg-card);padding:1.6rem}
+  .svc h3{font-size:1.05rem;margin-bottom:.5rem}
+  .svc p{color:var(--ink-dim);font-size:.92rem}
+
+  #experience{border-top:1px solid var(--line)}
+  .job{display:grid;grid-template-columns:150px 1fr;gap:1.5rem;padding:1.6rem 0;border-bottom:1px solid var(--line)}
+  .job:last-child{border-bottom:none}
+  .job time{font-family:'IBM Plex Mono',monospace;color:var(--mint-dim);font-size:.85rem}
+  .job h3{font-size:1.05rem}
+  .job p{color:var(--ink-dim);font-size:.92rem;margin-top:.35rem}
+
+  #portfolio{border-top:1px solid var(--line)}
+  .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.6rem}
+  .work-card{background:var(--bg-card);border:1px solid var(--line)}
+  .work-thumb{height:130px;background:repeating-linear-gradient(45deg,var(--bg-raised),var(--bg-raised) 10px,var(--bg-card) 10px,var(--bg-card) 20px);border-bottom:1px solid var(--line)}
+  .work-card .body{padding:1.2rem}
+  .work-card h3{font-size:.98rem}
+  .work-card p{color:var(--ink-dim);font-size:.87rem;margin-top:.4rem}
+  .work-card .mono{color:var(--mint);font-size:.75rem;margin-top:.7rem;display:block}
+
+  #credentials{border-top:1px solid var(--line)}
+  .cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+  .cred-list li{list-style:none;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.93rem;color:var(--ink-dim)}
+  .cred-list li b{color:var(--ink);display:block;font-size:.96rem;font-weight:600}
+  .lang-row{display:flex;justify-content:space-between;font-size:.92rem;padding:.55rem 0;border-bottom:1px solid var(--line);color:var(--ink-dim)}
+  .lang-row b{color:var(--ink)}
+
+  #testimonials{border-top:1px solid var(--line)}
+  .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
+  .quote{background:var(--bg-card);border:1px solid var(--line);padding:1.6rem}
+  .quote p{font-size:.95rem;color:var(--ink-dim)}
+  .quote footer{margin-top:1rem;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--mint)}
+
+  #contact{border-top:1px solid var(--line);padding-bottom:3rem}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+  .contact-list a{display:block;padding:.8rem 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .contact-list a:hover{color:var(--mint)}
+  .links-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+  .links-row a{border:1px solid var(--line);padding:.5rem 1rem;font-size:.85rem;font-family:'IBM Plex Mono',monospace}
+  .links-row a:hover{border-color:var(--mint);color:var(--mint)}
+
+  footer{border-top:1px solid var(--line);padding:1.5rem;text-align:center;color:var(--ink-dim);font-size:.82rem;font-family:'IBM Plex Mono',monospace}
+
+  @media(max-width:800px){
+    #hero{grid-template-columns:1fr;text-align:left}
+    .avatar{justify-self:start;order:-1;width:100px;height:100px;font-size:1.8rem}
+    #about .grid,.cred-grid,.contact-grid,.quote-grid{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr}
+    .navlinks{display:none}
+    .navbtn{display:flex}
+    .job{grid-template-columns:1fr;gap:.3rem}
   }
-  .frame-tag .dot{width:6px; height:6px; border-radius:50%; background:var(--accent);
-    animation:pulse 2.2s ease-in-out infinite;}
-  @media (prefers-reduced-motion: reduce){.frame-tag .dot{animation:none;}}
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.25;}}
-
-  .bbox{
-    position:relative;
-    border:1px solid var(--accent-dim);
-    padding:40px 36px;
-    margin-bottom:8px;
-  }
-  .bbox::before,.bbox::after,.bbox .c3,.bbox .c4{
-    content:''; position:absolute; width:14px; height:14px;
-    border-color:var(--accent); border-style:solid;
-  }
-  .bbox::before{top:-1px; left:-1px; border-width:2px 0 0 2px;}
-  .bbox::after{top:-1px; right:-1px; border-width:2px 2px 0 0;}
-  .bbox .c3{bottom:-1px; left:-1px; border-width:0 0 2px 2px;}
-  .bbox .c4{bottom:-1px; right:-1px; border-width:0 2px 2px 0;}
-
-  .hero h1{font-size:clamp(2.4rem, 6vw, 4rem); line-height:1.05;}
-  .hero h1 span{color:var(--text-dim); font-weight:400;}
-  .hero .role{margin-top:18px; font-size:1.15rem; color:var(--text-dim); max-width:520px;}
-  .hero .role strong{color:var(--text); font-weight:500;}
-
-  .timecode{
-    margin-top:28px; display:flex; gap:22px; flex-wrap:wrap;
-    font-family:'IBM Plex Mono'; font-size:0.82rem; color:var(--accent);
-  }
-  .timecode span{color:var(--text-dim);}
-
-  /* --- section shell --- */
-  section{padding:64px 0; border-top:1px solid var(--line);}
-  .eyebrow{font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--accent); margin-bottom:10px;}
-  section h2{font-size:1.7rem; margin-bottom:28px; max-width:640px;}
-
-  /* --- what I do --- */
-  .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
-  .grid .item{background:var(--bg); padding:26px;}
-  .grid .item h3{font-size:1.02rem; margin-bottom:8px; color:var(--text);}
-  .grid .item p{color:var(--text-dim); font-size:0.93rem;}
-  .grid .item .tag{font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--accent); display:block; margin-bottom:10px;}
-  @media (max-width:640px){.grid{grid-template-columns:1fr;}}
-
-  /* --- reel / experience --- */
-  .reel{border-left:1px solid var(--line); margin-left:6px;}
-  .frame{position:relative; padding:4px 0 34px 28px;}
-  .frame::before{
-    content:attr(data-frame); position:absolute; left:-6px; top:4px; transform:translateX(-100%);
-    font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--text-dim); width:52px; text-align:right;
-  }
-  .frame::after{
-    content:''; position:absolute; left:-5px; top:8px; width:9px; height:9px;
-    background:var(--bg); border:2px solid var(--accent); border-radius:50%;
-  }
-  .frame .role{font-weight:500; color:var(--text); font-size:1.02rem;}
-  .frame .org{color:var(--accent); font-size:0.92rem; margin-top:2px;}
-  .frame p{color:var(--text-dim); font-size:0.92rem; margin-top:8px; max-width:560px;}
-
-  /* --- skills --- */
-  .chips{display:flex; flex-wrap:wrap; gap:10px;}
-  .chip{
-    font-family:'IBM Plex Mono'; font-size:0.8rem; color:var(--text);
-    border:1px solid var(--line); padding:7px 12px; border-radius:var(--radius);
-    background:var(--bg-raised);
-  }
-
-  /* --- contact --- */
-  .contact-box{
-    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;
-  }
-  .contact-box h2{margin-bottom:6px;}
-  .contact-box p{color:var(--text-dim); max-width:420px;}
-  .contact-links{display:flex; flex-direction:column; gap:10px; font-family:'IBM Plex Mono'; font-size:0.9rem;}
-  footer{padding:28px 0; color:var(--text-dim); font-size:0.8rem; font-family:'IBM Plex Mono'; border-top:1px solid var(--line);}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <div class="brand">DAVID AKIMARA <span class="mono">// annotator.log</span></div>
-    <ul>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <div class="frame-tag"><span class="dot"></span> REC · 00:00:00:00</div>
-
-    <div class="bbox"><span class="c3"></span><span class="c4"></span>
-      <h1>Hello there. <span>I train the models<br>and label the data<br>they learn from.</span></h1>
-      <p class="role"><strong>David Akimara</strong> — AI trainer &amp; video annotator. I turn raw footage and
-        model output into the clean, structured data that machine learning systems are built on:
-        bounding boxes, segmentation, transcripts, and human judgment.</p>
+<header>
+  <nav>
+    <div class="logo">DA<span>.</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#experience">Experience</a>
+      <a href="#portfolio">Work</a>
+      <a href="#contact">Contact</a>
     </div>
-
-    <div class="timecode">
-      <div><span>Role</span> AI Trainer, Academic Writer &amp; Annotator</div>
-      <div><span>Focus</span> Computer Vision · LLM Feedback</div>
-      <div><span>Status</span> Available for work</div>
-    </div>
-  </div>
+    <button class="navbtn" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
 </header>
 
-<section id="work">
-  <div class="wrap">
-    <div class="eyebrow">What I do</div>
-    <h2>Every dataset a model trusts starts with someone checking every frame.</h2>
-    <div class="grid">
-      <div class="item">
-        <span class="tag">01 · VIDEO</span>
-        <h3>Video &amp; image annotation</h3>
-        <p>Frame-by-frame bounding boxes, polygon segmentation, and object tracking for computer vision training sets.</p>
-      </div>
-      <div class="item">
-        <span class="tag">02 · LANGUAGE</span>
-        <h3>LLM response evaluation</h3>
-        <p>Ranking and rating model outputs for helpfulness, accuracy, and safety as part of RLHF pipelines.</p>
-      </div>
-      <div class="item">
-        <span class="tag">03 · QUALITY</span>
-        <h3>Quality control &amp; review</h3>
-        <p>Auditing annotation batches against guideline specs, flagging edge cases, and tightening labeling rules.</p>
-      </div>
-      <div class="item">
-        <span class="tag">04 · TEXT</span>
-        <h3>Transcription &amp; captioning</h3>
-        <p>Accurate transcripts and timed captions for speech and audio datasets used in training and evaluation.</p>
-      </div>
+<section id="hero">
+  <div>
+    <div class="status-chip"><i></i>Available for freelance work</div>
+    <h1>David Akimara</h1>
+    <div class="role">AI Trainer &amp; Data Annotation Specialist</div>
+    <p class="lead">I teach AI systems to understand the world — labeling and reviewing language, image, and video data so models learn to see, read, and respond accurately.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:davidakimara@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="#portfolio">View my work</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>1 yr</b><span>hands-on AI training experience</span></div>
+      <div class="stat"><b>3</b><span>data types: text, image, video</span></div>
+      <div class="stat"><b>[[N]]</b><span>[[ projects / clients delivered ]]</span></div>
     </div>
   </div>
+  <div class="avatar">DA</div>
 </section>
 
-<section id="experience">
-  <div class="wrap">
-    <div class="eyebrow">Experience</div>
-    <h2>A running log of the work.</h2>
-    <div class="reel">
-      <div class="frame" data-frame="NOW">
-        <div class="role">AI Trainer &amp; Video Annotator</div>
-        <div class="org">Freelance / Platform-based</div>
-        <p>Annotating video and image datasets and evaluating model responses for AI training projects across
-          multiple client platforms.</p>
-      </div>
-      <div class="frame" data-frame="PREV">
-        <div class="role">Data Annotator</div>
-        <div class="org">Contract project work</div>
-        <p>Labeled objects across video sequences for computer vision models, maintaining consistency across
-          long frame runs and edge-case footage.</p>
+<section id="about">
+  <div class="grid">
+    <div class="tagged">
+      <h2>About</h2>
+      <p style="margin-top:1rem">I'm a freelance AI trainer based in Nairobi, with hands-on experience using, training, and helping build AI systems. My focus is data annotation across three modalities — language, image, and video — turning raw, messy data into the clean, labeled datasets that models are trained and evaluated on. [[ Add a sentence or two on how you got started, what kinds of projects you enjoy, and what sets your annotation work apart — accuracy, speed, attention to edge cases, etc. ]]</p>
+    </div>
+    <div>
+      <span class="tag-label">core focus</span>
+      <div class="tag-group">
+        <span class="tag"><i></i>Language annotation</span>
+        <span class="tag"><i></i>Image annotation</span>
+        <span class="tag"><i></i>Video annotation</span>
+        <span class="tag"><i></i>AI model training</span>
       </div>
     </div>
   </div>
 </section>
 
 <section id="skills">
-  <div class="wrap">
-    <div class="eyebrow">Skills</div>
-    <h2>Tools of the trade.</h2>
-    <div class="chips">
-      <span class="chip">Bounding Box Annotation</span>
-      <span class="chip">Semantic Segmentation</span>
-      <span class="chip">Object Tracking</span>
-      <span class="chip">RLHF Ranking</span>
-      <span class="chip">Prompt Evaluation</span>
-      <span class="chip">Transcription</span>
-      <span class="chip">Data QA</span>
-      <span class="chip">Labelbox / CVAT</span>
+  <div class="section-head">
+    <h2>Skills &amp; tools</h2>
+    <p>[[ Trim or expand this list to match your real toolkit. ]]</p>
+  </div>
+  <span class="tag-label">key skills</span>
+  <div class="tag-group" style="margin-bottom:2rem">
+    <span class="tag"><i></i>Data labeling &amp; annotation</span>
+    <span class="tag"><i></i>Prompt writing &amp; evaluation</span>
+    <span class="tag"><i></i>RLHF / model feedback</span>
+    <span class="tag"><i></i>Quality review (QA)</span>
+    <span class="tag"><i></i>Dataset structuring</span>
+    <span class="tag"><i></i>[[ add skill ]]</span>
+  </div>
+  <span class="tag-label">AI &amp; software tools</span>
+  <div class="tag-group">
+    <span class="tag"><i></i>Label Studio</span>
+    <span class="tag"><i></i>CVAT</span>
+    <span class="tag"><i></i>[[ your annotation platforms ]]</span>
+    <span class="tag"><i></i>Google Sheets / Excel</span>
+    <span class="tag"><i></i>[[ add tool ]]</span>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-head">
+    <h2>Services</h2>
+    <p>What I can help clients and platforms with.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc"><h3>Language annotation</h3><p>Text classification, sentiment tagging, entity labeling, and conversational data review for NLP models.</p></div>
+    <div class="svc"><h3>Image annotation</h3><p>Bounding boxes, segmentation, and image classification for computer-vision training sets.</p></div>
+    <div class="svc"><h3>Video annotation</h3><p>Frame-by-frame labeling, object tracking, and event tagging across video datasets.</p></div>
+    <div class="svc"><h3>AI training &amp; evaluation</h3><p>[[ Describe how you help train or evaluate AI systems — e.g. response rating, model comparison, feedback loops. ]]</p></div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-head">
+    <h2>Experience</h2>
+  </div>
+  <div class="job">
+    <time>[[ Month Year ]] — Present</time>
+    <div>
+      <h3>Freelance AI Trainer &amp; Data Annotator</h3>
+      <p>[[ Client / platform name ]] — [[ Describe what you worked on: which modality, dataset size, tools used, and any results or feedback scores. ]]</p>
     </div>
+  </div>
+  <div class="job">
+    <time>[[ Month Year ]] — [[ Month Year ]]</time>
+    <div>
+      <h3>[[ Role title ]]</h3>
+      <p>[[ Add a second role or project here, or remove this block if you only have one to list. ]]</p>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="section-head">
+    <h2>Work samples</h2>
+    <p>[[ Swap these placeholders for real examples — link to a report, dataset sample, or before/after annotation screenshot. ]]</p>
+  </div>
+  <div class="work-grid">
+    <div class="work-card"><div class="work-thumb"></div><div class="body"><h3>[[ Project title ]]</h3><p>[[ One or two lines on what you annotated and the outcome. ]]</p><span class="mono">[[ language / image / video ]]</span></div></div>
+    <div class="work-card"><div class="work-thumb"></div><div class="body"><h3>[[ Project title ]]</h3><p>[[ One or two lines on what you annotated and the outcome. ]]</p><span class="mono">[[ language / image / video ]]</span></div></div>
+    <div class="work-card"><div class="work-thumb"></div><div class="body"><h3>[[ Project title ]]</h3><p>[[ One or two lines on what you annotated and the outcome. ]]</p><span class="mono">[[ language / image / video ]]</span></div></div>
+  </div>
+</section>
+
+<section id="credentials">
+  <div class="cred-grid">
+    <div>
+      <div class="section-head" style="margin-bottom:1.2rem"><h2>Education &amp; certifications</h2></div>
+      <ul class="cred-list">
+        <li><b>[[ Course / certification name ]]</b>[[ Institution — Year ]]</li>
+        <li><b>[[ Course / certification name ]]</b>[[ Institution — Year ]]</li>
+        <li><b>Achievements</b>[[ Note any awards, milestones, or recognitions here. ]]</li>
+      </ul>
+    </div>
+    <div>
+      <div class="section-head" style="margin-bottom:1.2rem"><h2>Languages</h2></div>
+      <div class="lang-row"><b>English</b><span>[[ Fluency ]]</span></div>
+      <div class="lang-row"><b>Swahili</b><span>[[ Fluency ]]</span></div>
+      <div class="lang-row"><b>[[ Language ]]</b><span>[[ Fluency ]]</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="section-head">
+    <h2>Client feedback</h2>
+    <p>[[ Replace with real quotes once you have them — delete this section until then. ]]</p>
+  </div>
+  <div class="quote-grid">
+    <div class="quote"><p>"[[ Quote about David's accuracy, reliability, or turnaround time. ]]"</p><footer>[[ Name, role/company ]]</footer></div>
+    <div class="quote"><p>"[[ Quote about working with David on an annotation project. ]]"</p><footer>[[ Name, role/company ]]</footer></div>
   </div>
 </section>
 
 <section id="contact">
-  <div class="wrap contact-box">
-    <div>
-      <h2>Let's work together.</h2>
-      <p>Open to annotation and AI training projects, short or long term.</p>
+  <div class="section-head">
+    <h2>Get in touch</h2>
+    <p>Open to freelance and contract annotation work.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-list">
+      <a href="mailto:davidakimara@gmail.com">✉ davidakimara@gmail.com</a>
+      <a href="tel:+254713710585">☎ +254 713 710 585</a>
+      <a href="#">📍 Nairobi, Kenya — [[ confirm ]]</a>
     </div>
-    <div class="contact-links">
-      <a href="mailto:davessprint@gmail.com">davessprint@gmail.com</a>
+    <div>
+      <span class="tag-label">availability</span>
+      <p style="color:var(--ink-dim);font-size:.93rem">[[ e.g. "Available 20–30 hrs/week, remote, starting immediately" — edit to your real availability. ]]</p>
+      <span class="tag-label" style="margin-top:1.3rem">profile links</span>
+      <div class="links-row">
+        <a href="#">LinkedIn ↗</a>
+        <a href="#">GitHub ↗</a>
+        <a href="#">Upwork ↗</a>
+      </div>
+      <p style="color:var(--ink-dim);font-size:.85rem;margin-top:1.3rem">References available on request.</p>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap">© 2026 David Akimara — annotator.log</div>
-</footer>
+<footer>© <span id="year"></span> David Akimara — built with HTML &amp; CSS</footer>
 
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const btn = document.getElementById('navToggle');
+  const links = document.querySelector('.navlinks');
+  btn.addEventListener('click', () => {
+    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    links.style.cssText += 'flex-direction:column;position:absolute;top:60px;right:1.5rem;background:#1a2224;border:1px solid #2a3436;padding:1rem 1.5rem;gap:1rem;';
+  });
+</script>
 </body>
 </html>
