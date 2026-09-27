@@ -67,11 +67,6 @@ projects:
     description: "https://youtube.com/shorts/vMPYGCX-dsM?feature=share"
     link: "https://youtube.com/shorts/vMPYGCX-dsM?feature=share"
 
-# Add real course titles, certificates, or achievements as you earn them.
-certifications:
-  - "Add a certification or course title here"
-  - "Add an achievement here"
-
 tools:
   - "Microsoft Word"
   - "CVAT (Computer Vision Annotation Tool)"
