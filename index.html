@@ -1,1 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dave Akimara | Freelance Portfolio</title>
 
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --heading: #000000;
+    --link: #0000EE;
+    --border: #d9d9d9;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "Times New Roman", Times, serif;
+    line-height: 1.6;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  h1, h2 {
+    color: var(--heading);
+    font-weight: bold;
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  a {
+    color: var(--link);
+    text-decoration: underline;
+  }
+  a:hover { color: #000099; }
+
+  /* ---------- Header ---------- */
+  header {
+    text-align: center;
+    padding-bottom: 32px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 36px;
+  }
+
+  .photo-frame {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    border: 3px solid #000000;
+    background: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-frame .placeholder-text {
+    font-size: 13px;
+    color: #777;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  h1#name {
+    font-size: 30px;
+    margin: 0 0 6px;
+    letter-spacing: 0.5px;
+  }
+
+  #title {
+    font-size: 17px;
+    font-style: italic;
+    color: #333;
+    margin: 0;
+  }
+
+  /* ---------- Sections ---------- */
+  section {
+    margin-bottom: 36px;
+  }
+
+  h2 {
+    font-size: 21px;
+    border-bottom: 2px solid var(--heading);
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+  }
+
+  #about-text {
+    text-align: justify;
+    font-size: 16px;
+  }
+
+  ul.plain-list {
+    margin: 0;
+    padding-left: 22px;
+  }
+  ul.plain-list li {
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+
+  .entry {
+    margin-bottom: 18px;
+  }
+  .entry-title {
+    font-weight: bold;
+    font-size: 17px;
+    color: var(--heading);
+  }
+  .entry-meta {
+    font-style: italic;
+    color: #444;
+    font-size: 14.5px;
+    margin: 2px 0 6px;
+  }
+  .entry-desc {
+    font-size: 16px;
+  }
+
+  .project-link {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 15px;
+  }
+
+  /* ---------- Contact ---------- */
+  #contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+  }
+  #contact-list li {
+    margin-bottom: 10px;
+  }
+  #contact-list .label {
+    font-weight: bold;
+    display: inline-block;
+    min-width: 130px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 32px 16px 60px; }
+    h1#name { font-size: 25px; }
+  }
+</style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="photo-frame" id="photo-frame">
+        <span class="placeholder-text">Add photo link<br/>in portfolio-data.yml</span>
+      </div>
+      <h1 id="name">Loading…</h1>
+      <p id="title"></p>
+    </header>
+
+    <section id="section-about">
+      <h2>About Me</h2>
+      <p id="about-text"></p>
+    </section>
+
+    <section id="section-skills">
+      <h2>Skills</h2>
+      <ul class="plain-list" id="skills-list"></ul>
+    </section>
+
+    <section id="section-experience">
+      <h2>Work Experience</h2>
+      <div id="experience-list"></div>
+    </section>
+
+    <section id="section-education">
+      <h2>Education &amp; Qualifications</h2>
+      <div id="education-list"></div>
+    </section>
+
+    <section id="section-projects">
+      <h2>Projects / Work Samples</h2>
+      <div id="projects-list"></div>
+    </section>
+
+    <section id="section-tools">
+      <h2>Tools &amp; Software Proficiency</h2>
+      <ul class="plain-list" id="tools-list"></ul>
+    </section>
+
+    <section id="section-contact">
+      <h2>Contact Information</h2>
+      <ul id="contact-list"></ul>
+    </section>
+
+    <footer>
+      &copy; <span id="year"></span> Dave Akimara — Freelance Portfolio
+    </footer>
+
+  </div>
+
+  <!-- YAML parser (reads portfolio-data.yml) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
