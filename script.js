@@ -133,13 +133,6 @@ function renderProjects(data) {
   });
 }
 
-function renderCertifications(data) {
-  const list = document.getElementById("cert-list");
-  (data.certifications || []).forEach((cert) => {
-    list.appendChild(el("li", null, cert));
-  });
-}
-
 function renderTools(data) {
   const row = document.getElementById("tools-row");
   (data.tools || []).forEach((tool) => {
