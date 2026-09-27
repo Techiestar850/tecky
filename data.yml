@@ -61,11 +61,11 @@ education:
 # placeholder slots until then.
 projects:
   - title: "Transcription sample"
-    description: "Add a link to a transcript you've completed"
-    link: ""
+    description: "https://youtu.be/Z-Jdn14dnzk"
+    link: "https://youtu.be/Z-Jdn14dnzk"
   - title: "Data annotation sample"
-    description: "Add a link to an annotated dataset, CVAT export, or before/after example"
-    link: ""
+    description: "https://youtube.com/shorts/vMPYGCX-dsM?feature=share"
+    link: "https://youtube.com/shorts/vMPYGCX-dsM?feature=share"
 
 # Add real course titles, certificates, or achievements as you earn them.
 certifications:
@@ -78,6 +78,6 @@ tools:
 
 contact:
   emails:
-    - "your.email@example.com"
-    - "your.secondary@example.com"
-  whatsapp: "+254 7XX XXX XXX"
+    - "davidakimara@gmail.com"
+    - "deepseanerdo1@gmail.com"
+  whatsapp: "+254 713710585"
