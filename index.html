@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dave Akimara — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12151a;
+    --panel:#181d24;
+    --panel-border:#262c36;
+    --text:#eef0f3;
+    --muted:#8b93a1;
+    --accent:#4fc9b8;
+    --accent-soft:rgba(79,201,184,0.12);
+    --chip-teal:#4fc9b8;
+    --chip-amber:#e3a857;
+    --chip-coral:#e2707e;
+    --chip-violet:#9483ea;
+    --radius:4px;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+    --head:'Space Grotesk', sans-serif;
+    --body:'Inter', sans-serif;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--body); line-height:1.6; font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+  h1,h2,h3{font-family:var(--head); font-weight:600; margin:0; letter-spacing:-0.01em;}
+
+  header.site{
+    border-bottom:1px solid var(--panel-border);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0; gap:16px; flex-wrap:wrap;
+  }
+  .nav .brand{font-family:var(--head); font-weight:600; font-size:1.05rem;}
+  .nav ul{list-style:none; display:flex; gap:22px; margin:0; padding:0; flex-wrap:wrap;}
+  .nav a{color:var(--muted); font-size:0.92rem;}
+  .nav a:hover{color:var(--text); text-decoration:none;}
+
+  section{padding:64px 0;}
+  section + section{border-top:1px solid var(--panel-border);}
+  .eyebrow{font-family:var(--mono); font-size:0.78rem; color:var(--accent); margin:0 0 10px;}
+  .section-title{font-size:1.5rem; margin-bottom:28px;}
+
+  /* Hero */
+  .hero{display:grid; grid-template-columns:1.3fr 0.9fr; gap:48px; align-items:center; padding:72px 0;}
+  .hero h1{font-size:2.4rem; line-height:1.15;}
+  .hero .role{color:var(--accent); font-family:var(--mono); font-size:0.95rem; margin-top:14px; display:block;}
+  .hero .tagline{color:var(--muted); margin-top:18px; max-width:46ch;}
+  .hero .location{color:var(--muted); font-size:0.85rem; margin-top:10px;}
+  .cta-row{display:flex; gap:14px; margin-top:30px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--body); font-weight:600; font-size:0.92rem;
+    padding:12px 20px; border-radius:var(--radius); cursor:pointer;
+    border:1px solid transparent; display:inline-block;
+  }
+  .btn-primary{background:var(--accent); color:#0d1210;}
+  .btn-primary:hover{background:#67d6c6; text-decoration:none;}
+  .btn-ghost{border-color:var(--panel-border); color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent); text-decoration:none;}
+
+  .bracket-frame{position:relative; padding:16px; justify-self:center;}
+  .bracket-frame .corner{position:absolute; width:20px; height:20px; border-color:var(--accent);}
+  .corner.tl{top:0; left:0; border-top:2px solid; border-left:2px solid;}
+  .corner.tr{top:0; right:0; border-top:2px solid; border-right:2px solid;}
+  .corner.bl{bottom:0; left:0; border-bottom:2px solid; border-left:2px solid;}
+  .corner.br{bottom:0; right:0; border-bottom:2px solid; border-right:2px solid;}
+  .photo{
+    width:200px; height:200px; border-radius:2px; object-fit:cover;
+    background:var(--panel); display:flex; align-items:center; justify-content:center;
+    font-family:var(--head); font-size:2.6rem; color:var(--accent);
+  }
+
+  /* About */
+  #about p{max-width:70ch; color:var(--text);}
+
+  /* Skills */
+  .skills-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:14px;}
+  .skill-card{
+    background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius);
+    padding:16px 18px;
+  }
+  .skill-name{display:flex; align-items:center; gap:9px; font-weight:600; margin-bottom:6px;}
+  .skill-name .dot{width:9px; height:9px; border-radius:50%; flex:none;}
+  .skill-detail{font-family:var(--mono); font-size:0.8rem; color:var(--muted); line-height:1.5;}
+
+  /* Experience */
+  .exp-item{position:relative; padding-left:24px; border-left:2px solid var(--panel-border);}
+  .exp-item::before{content:""; position:absolute; left:-7px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--accent);}
+  .exp-role{font-size:1.1rem; font-weight:600;}
+  .exp-period{font-family:var(--mono); font-size:0.8rem; color:var(--accent); display:block; margin:4px 0 14px;}
+  .exp-item ul{margin:0; padding-left:20px; color:var(--muted);}
+  .exp-item li{margin-bottom:8px;}
+
+  /* Education */
+  .edu-card{background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius); padding:22px;}
+  .edu-school{font-size:1.05rem; font-weight:600;}
+  .edu-program{color:var(--accent); font-family:var(--mono); font-size:0.85rem; margin:6px 0 12px; display:block;}
+  .edu-note{color:var(--muted); max-width:65ch;}
+
+  /* Projects */
+  .projects-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:20px;}
+  .project-card{position:relative; padding:20px; border:1px solid var(--panel-border); border-radius:var(--radius);}
+  .project-card .corner{width:14px; height:14px;}
+  .project-title{font-weight:600; margin-bottom:8px;}
+  .project-desc{color:var(--muted); font-size:0.92rem; margin-bottom:14px;}
+  .project-link{font-family:var(--mono); font-size:0.85rem;}
+
+  /* Certifications */
+  .cert-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .cert-list li{
+    font-family:var(--mono); font-size:0.9rem; color:var(--text);
+    padding:12px 16px; background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius);
+  }
+
+  /* Tools */
+  .tools-row{display:flex; gap:12px; flex-wrap:wrap;}
+  .tool-chip{
+    font-family:var(--mono); font-size:0.85rem; padding:9px 14px;
+    border:1px solid var(--panel-border); border-radius:20px; color:var(--text);
+  }
+
+  /* Contact */
+  .contact-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:22px;}
+  .contact-label{font-family:var(--mono); font-size:0.75rem; color:var(--muted); margin-bottom:6px; display:block;}
+  .contact-value{font-size:1.02rem;}
+
+  footer{padding:32px 0; text-align:center; color:var(--muted); font-size:0.82rem;}
+
+  #load-error{
+    display:none; max-width:var(--maxw); margin:40px auto; padding:18px 22px;
+    background:var(--panel); border:1px solid var(--chip-coral); border-radius:var(--radius);
+    color:var(--text); font-size:0.92rem; line-height:1.6;
+  }
+  #load-error code{font-family:var(--mono); background:#0d1210; padding:2px 6px; border-radius:3px;}
+
+  @media (max-width:760px){
+    .hero{grid-template-columns:1fr; padding-top:48px;}
+    .hero .bracket-frame{order:-1; justify-self:start;}
+    .nav ul{gap:14px;}
+    section{padding:44px 0;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<div id="load-error">
+  <strong>Couldn't load data.yml.</strong> This page loads your content with
+  <code>fetch()</code>, which most browsers block when a file is opened directly
+  (<code>file://</code>). Serve the folder with a local server — for example
+  run <code>python3 -m http.server</code> in the folder and open
+  <code>http://localhost:8000</code> — or upload all three files to a host
+  like GitHub Pages or Netlify.
+</div>
+
+<header class="site">
+  <div class="wrap nav">
+    <span class="brand" id="nav-name">Portfolio</span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div>
+      <h1 id="hero-name">Loading…</h1>
+      <span class="role" id="hero-title"></span>
+      <p class="tagline" id="hero-tagline"></p>
+      <span class="location" id="hero-location"></span>
+      <div class="cta-row">
+        <a href="#contact" class="btn btn-primary">Get in touch</a>
+        <a href="#work" class="btn btn-ghost">View my work</a>
+      </div>
+    </div>
+    <div class="bracket-frame">
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+      <div class="photo" id="hero-photo">DA</div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <p class="eyebrow">About</p>
+      <h2 class="section-title">Who I am</h2>
+      <p id="about-text"></p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <p class="eyebrow">Skills</p>
+      <h2 class="section-title">What I offer</h2>
+      <div class="skills-grid" id="skills-grid"></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <p class="eyebrow">Experience</p>
+      <h2 class="section-title">Work experience</h2>
+      <div id="experience-list"></div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <p class="eyebrow">Education</p>
+      <h2 class="section-title">Education & qualifications</h2>
+      <div id="education-list"></div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <p class="eyebrow">Work samples</p>
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid" id="projects-grid"></div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="wrap">
+      <p class="eyebrow">Certifications</p>
+      <h2 class="section-title">Certifications & achievements</h2>
+      <ul class="cert-list" id="cert-list"></ul>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="wrap">
+      <p class="eyebrow">Tools</p>
+      <h2 class="section-title">Tools & software</h2>
+      <div class="tools-row" id="tools-row"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h2 class="section-title">Let's work together</h2>
+      <div class="contact-grid" id="contact-grid"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" id="footer-text"></div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
