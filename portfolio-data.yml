@@ -8,7 +8,7 @@
 profile:
   name: "Dave Akimara"
   title: "Freelance Data Annotator | Transcriptionist | Academic Writer | AI Training Specialist"
-  photo_url: ""   # paste a direct image link here, e.g. https://i.imgur.com/yourphoto.jpg
+  photo_url: "My Image 2026-09-27 at 6.49.50 PM.jpeg"   # paste a direct image link here, e.g. https://i.imgur.com/yourphoto.jpg
 
 about: >
   I am a detail-driven freelance professional specializing in data annotation,
@@ -40,21 +40,23 @@ experience:
 education:
   - institution: "SamaSource"
     program: "Data Annotation & AI Training Program"
-    period: ""
+    period: "2025 to 2026"
 
 projects:
   - title: "Transcription Work Samples"
-    link: ""   # paste a link to a sample transcript or portfolio folder
+    link: "https://youtu.be/Z-Jdn14dnzk"   # paste a link to a sample transcript or portfolio folder
     description: "A collection of accurate audio-to-text transcription samples."
   - title: "Data Annotation Portfolio (CVAT)"
-    link: ""   # paste a link to a sample annotation project or screenshots
+    link: "https://youtube.com/shorts/vMPYGCX-dsM?feature=share"   # paste a link to a sample annotation project or screenshots
     description: "Labeled image/video datasets prepared for AI model training."
 
 tools:
   - "Microsoft Word"
+  - "Word Office"
+  - "GitHub"
   - "CVAT (Computer Vision Annotation Tool)"
 
 contact:
-  email_primary: ""     # e.g. dave.akimara@gmail.com
-  email_secondary: ""   # e.g. dakimara.work@outlook.com
-  whatsapp: ""          # e.g. +254 7XX XXX XXX
+  email_primary: "davidakimara@gmail.com"     # e.g. dave.akimara@gmail.com
+  email_secondary: "deepseanerd01@gmail.com"   # e.g. dakimara.work@outlook.com
+  whatsapp: "+254 713710585"          # e.g. +254 7XX XXX XXX
