@@ -9,7 +9,7 @@
 // Keep this in sync with data.yml if you want the fallback to be
 // accurate too — otherwise just run a local server (see the
 // "How to view this" note at the bottom of this file).
-const data.yml = `
+const FALLBACK YAML = `
 site:
   name: "Dave Akimara"
   title: "Freelance Data Annotation & AI Training Specialist"
