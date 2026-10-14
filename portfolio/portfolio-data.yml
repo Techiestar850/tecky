@@ -1,1 +1,62 @@
+# ============================================================
+# PORTFOLIO DATA FILE
+# Edit the values below to update your portfolio.
+# Do not change the field names (the text before each colon).
+# Leave a value as "" (empty quotes) if you don't have it yet.
+# ============================================================
 
+profile:
+  name: "Dave Akimara"
+  title: "Freelance Data Annotator | Transcriptionist | Academic Writer | AI Training Specialist"
+  photo_url: "My Image 2026-09-27 at 6.49.50 PM.jpeg"   # paste a direct image link here, e.g. https://i.imgur.com/yourphoto.jpg
+
+about: >
+  I am a detail-driven freelance professional specializing in data annotation,
+  transcription, academic writing, and AI training data services. Over the past
+  year I have worked with clients across multiple online platforms, delivering
+  accurate, deadline-conscious work on data labeling projects using CVAT,
+  audio and video transcription assignments, and well-researched academic and
+  copywriting content. My background combines strong analytical skills with
+  meticulous attention to detail, allowing me to produce clean, high-quality
+  datasets and written work that clients can rely on. I am comfortable working
+  independently, managing multiple deliverables at once, and adapting quickly
+  to new tools and project guidelines.
+
+skills:
+  - "Data Annotation & Labeling"
+  - "Audio & Video Transcription"
+  - "Academic & Research Writing"
+  - "AI Training Data Curation"
+  - "Copywriting & Content Writing"
+
+experience:
+  - role: "Freelance Data Annotator & Transcriptionist"
+    period: "1 Year"
+    description: >
+      Delivered accurate image, video, and text annotation for AI training
+      datasets, alongside audio/video transcription and academic writing
+      assignments for clients sourced through online freelancing platforms.
+
+education:
+  - institution: "SamaSource"
+    program: "Data Annotation & AI Training Program"
+    period: "2025 to 2026"
+
+projects:
+  - title: "Transcription Work Samples"
+    link: "https://youtu.be/Z-Jdn14dnzk"   # paste a link to a sample transcript or portfolio folder
+    description: "A collection of accurate audio-to-text transcription samples."
+  - title: "Data Annotation Portfolio (CVAT)"
+    link: "https://youtube.com/shorts/vMPYGCX-dsM?feature=share"   # paste a link to a sample annotation project or screenshots
+    description: "Labeled image/video datasets prepared for AI model training."
+
+tools:
+  - "Microsoft Word"
+  - "Word Office"
+  - "GitHub"
+  - "CVAT (Computer Vision Annotation Tool)"
+
+contact:
+  email_primary: "davidakimara@gmail.com"     # e.g. dave.akimara@gmail.com
+  email_secondary: "deepseanerd01@gmail.com"   # e.g. dakimara.work@outlook.com
+  whatsapp: "+254 713710585"          # e.g. +254 7XX XXX XXX
