@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Clock</title>
+<style>
+  :root{
+    --bg:#10151a; --panel:#171e25; --ink:#e8eef4; --dim:#7f8d9b; --accent:#6fd0b0;
+  }
+  body.light{ --bg:#eef1f4; --panel:#ffffff; --ink:#18212a; --dim:#667381; --accent:#17795c; }
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; display:grid; place-items:center;
+    background:var(--bg); color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    transition:background .3s,color .3s;
+  }
+  .clock{
+    background:var(--panel); border-radius:14px; padding:clamp(20px,5vw,48px);
+    text-align:center; box-shadow:0 8px 30px rgba(0,0,0,.18); max-width:94vw;
+  }
+  .time{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:clamp(2.6rem,13vw,7rem); font-weight:600; letter-spacing:.02em;
+    font-variant-numeric:tabular-nums; line-height:1.1; color:var(--accent);
+  }
+  .time .ampm{font-size:.3em; margin-left:.3em; color:var(--dim); letter-spacing:0}
+  .date{margin-top:10px; font-size:clamp(1rem,3.5vw,1.4rem); color:var(--ink)}
+  .zone{margin-top:4px; font-size:.9rem; color:var(--dim)}
+  .controls{margin-top:24px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+  button{
+    font:inherit; color:var(--ink); background:transparent; cursor:pointer;
+    border:1px solid var(--dim); border-radius:6px; padding:7px 14px;
+  }
+  button:hover{border-color:var(--accent); color:var(--accent)}
+  button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+</style>
+</head>
+<body>
+  <main class="clock" role="timer" aria-label="Digital clock">
+    <div class="time" id="time">--:--:--</div>
+    <div class="date" id="date"></div>
+    <div class="zone" id="zone"></div>
+    <div class="controls">
+      <button id="fmt" type="button">Switch to 12-hour</button>
+      <button id="sec" type="button">Hide seconds</button>
+      <button id="theme" type="button">Light theme</button>
+    </div>
+  </main>
+
+<script>
+(function () {
+  var use24 = true, showSeconds = true;
+  var timeEl = document.getElementById('time');
+  var dateEl = document.getElementById('date');
+  var zoneEl = document.getElementById('zone');
+
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+  function tick() {
+    var now = new Date();
+    var h = now.getHours(), suffix = '';
+    if (!use24) {
+      suffix = h >= 12 ? 'PM' : 'AM';
+      h = h % 12 || 12;
+    }
+    var text = pad(h) + ':' + pad(now.getMinutes()) + (showSeconds ? ':' + pad(now.getSeconds()) : '');
+    timeEl.textContent = text;
+    if (suffix) {
+      var span = document.createElement('span');
+      span.className = 'ampm';
+      span.textContent = suffix;
+      timeEl.appendChild(span);
+    }
+    dateEl.textContent = now.toLocaleDateString(undefined, {
+      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+    });
+    zoneEl.textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    document.title = text;
+  }
+
+  document.getElementById('fmt').addEventListener('click', function () {
+    use24 = !use24;
+    this.textContent = use24 ? 'Switch to 12-hour' : 'Switch to 24-hour';
+    tick();
+  });
+  document.getElementById('sec').addEventListener('click', function () {
+    showSeconds = !showSeconds;
+    this.textContent = showSeconds ? 'Hide seconds' : 'Show seconds';
+    tick();
+  });
+  document.getElementById('theme').addEventListener('click', function () {
+    var light = document.body.classList.toggle('light');
+    this.textContent = light ? 'Dark theme' : 'Light theme';
+  });
+
+  tick();
+  // Align updates to the start of each second so the display never lags.
+  (function loop() {
+    tick();
+    setTimeout(loop, 1000 - (Date.now() % 1000));
+  })();
+})();
+</script>
+</body>
+</html>
