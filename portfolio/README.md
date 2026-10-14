@@ -1,2 +1,1 @@
-Hey there
-## Ai trainer
+### David Akimara
